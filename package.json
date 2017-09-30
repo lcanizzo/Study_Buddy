@@ -1,0 +1,20 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcanizzo/Study_Buddy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcanizzo/Study_Buddy/issues"
+  },
+  "homepage": "https://github.com/lcanizzo/Study_Buddy#readme"
+}
