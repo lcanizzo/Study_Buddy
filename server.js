@@ -299,7 +299,7 @@ const subjects = [
                 ]             
             }, 
             {
-                name: "education & teaching",
+                name: "education and teaching",
                 classes: [
                     {
                         name: "all"
@@ -360,7 +360,7 @@ const subjects = [
                 ]             
             }, 
             {
-                name: "environment & ecology",
+                name: "environment and ecology",
                 classes: [
                     {
                         name: "all"
@@ -368,7 +368,7 @@ const subjects = [
                 ]             
             }, 
             {
-                name: "health & nursing",
+                name: "health and nursing",
                 classes: [
                     {
                         name: "all"

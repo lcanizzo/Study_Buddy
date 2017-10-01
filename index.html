@@ -117,16 +117,17 @@
         console.log(data);
     }).done((data,error)=>{
         for (let i=0; i<data.length; i++){
-            let subject= data[i].name
+            let subjectString= data[i].name
+            let subject = subjectString.replace(/\s+/g, '');
         //make dropdown buttons
             let $dropDown = $("<div>");
                 $dropDown.addClass("dropdown");
                 $dropDown.attr("id", "dropDwn_"+subject);
-            let $dropBtn = $("<button>"+subject+"</button>");
+            let $dropBtn = $("<button>"+subjectString+"</button>");
                 $dropBtn.addClass("btn btn-secondary dropdown-toggle");
                 $dropBtn.attr("type", "button");
                 $dropBtn.attr("id", subject);
-            let $dropMenu = $("<div>dropdown</div>");
+            let $dropMenu = $("<div></div>");
                 $dropMenu.addClass("dropdown-menu");                
                 $dropMenu.attr("id", "menu_"+subject);                
                 $dropMenu.attr("aria-labelledby", subject);
@@ -135,32 +136,35 @@
             $('.dropdown-toggle').attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
             
             for(let c=0; c<data[i].areas.length; c++){
-                let area = data[i].areas[c].name;
+                let areaString = data[i].areas[c].name;
+                let area = areaString.replace(/\s+/g, '');
             //add checkboxes to dropdowns
-                let $dropCheck = $("<input>", {class:"dropdown-item", type:"checkbox"});
-                let $checkLabel = $("<label>"+area+"</label>");
+                let $dropCheck = $("<input>");
+                    $dropCheck.addClass("dropdown-item");
+                    $dropCheck.attr("type", "checkbox");
+                let $checkLabel = $("<label>"+areaString+"</label>");
                     $checkLabel.addClass("dropdown-item");
                     $checkLabel.attr("id", area);
-                $('#menu_business').attr('aria-labelledby', 'business').prepend($checkLabel);
-                $('#chemistry').prepend($dropCheck);
+                $('#menu_'+subject).attr('aria-labelledby', subject).prepend($checkLabel);
+                $('#'+area).prepend($dropCheck);
             }
         }
     });
 
-    let area = 'accounting';
-    let subject = 'business';
+    // let area = 'accounting';
+    // let subject = 'business';
 
-    let $dropDown = $("<div>", {id: 'newdropdown1', class:'dropdown'});
-    let $dropBtn = $("<button>", {id: 'newbutton1', class:"btn btn-secondary dropdown-toggle", type: "button"});
-    let $dropMenu = $("<div>", {id:'dropMenu-box', class:"dropdown-menu"});
-    $('#courses-box').append($dropDown).append($dropBtn, $dropMenu);
-    $('#newbutton1').html(subject).attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
+    // let $dropDown = $("<div>", {id: 'newdropdown1', class:'dropdown'});
+    // let $dropBtn = $("<button>", {id: 'newbutton1', class:"btn btn-secondary dropdown-toggle", type: "button"});
+    // let $dropMenu = $("<div>", {id:'dropMenu-box', class:"dropdown-menu"});
+    // $('#courses-box').append($dropDown).append($dropBtn, $dropMenu);
+    // $('#newbutton1').html(subject).attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
 
 
-    let $dropCheck = $("<input>", {id:'newInput', class:"dropdown-item", type:"checkbox"});
-    let $checkLabel = $("<label>", {class:"dropdown-item", id:"checkLabel"});
-    $('#dropMenu-box').attr('aria-labelledby', 'newbutton1').append($checkLabel);
-    $('#checkLabel').html(area).prepend($dropCheck);
+    // let $dropCheck = $("<input>", {id:'newInput', class:"dropdown-item", type:"checkbox"});
+    // let $checkLabel = $("<label>", {class:"dropdown-item", id:"checkLabel"});
+    // $('#dropMenu-box').attr('aria-labelledby', 'newbutton1').append($checkLabel);
+    // $('#checkLabel').html(area).prepend($dropCheck);
 
 </script>
 </body>
