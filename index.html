@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://www.harvestmooncandle.com/securedownload.png" />
+    <title>Study Buddy</title>
+
+    
+    <!-- jQuery & jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Popper / Bootstrap.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+    <!-- CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body>
+    <!-- N A V B A R -->
+    <div class="sticky-top">
+
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="nav-content">
+                <a class="navbar-brand" href="https://ankitashah212.github.io/School_guide/">
+                    <img src="assets/images/white-icon-sized.png" alt="Brand Icon">
+                    Study Buddy
+                </a>
+                <span class="navbar-text">
+                    Share the Load!
+                </span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Welcome div
+    <div class="container page-body welcome">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-3">Find Peer Tutors!</h1>
+                <p class="lead">Use the search tabs and filters to quickly narrow down your tutor search.</p>
+                <!-- Get started button leads to user object setup -->
+            <!-- </div>
+        </div>
+    </div> --> 
+
+    <!-- User Setup div -->
+    <div class="container page-body setup-body">
+        <div id="results-box">
+            <div class="row">
+                <h3 id="school-name">Setup User Profile:</h3>
+            </div>
+
+            <div class="row results-content">
+                <div class="col content">
+                    <div id="charts">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact-info" role="tab" aria-controls="contact" aria-expanded="true"
+                                    data-ytta-id="-">Contact Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" data-ytta-id="-" aria-expanded="false">Current Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="best-tab" data-toggle="tab" href="#best-courses" role="tab" aria-controls="best" data-ytta-id="-" aria-expanded="false">Best Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="worst-tab" data-toggle="tab" href="#worst-courses" role="tab" aria-controls="worst" data-ytta-id="-" aria-expanded="false">Worst Courses</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade active show" id="contact-info" role="tabpanel" aria-labelledby="contact-tab" aria-expanded="true">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name-input">Name</label>
+                                        <input type="text" class="form-control" id="name-input" placeholder="Luca Yu">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="email-input">Email address</label>
+                                        <input type="email" class="form-control" id="email-input" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userID-input">User ID</label>
+                                        <input type="text" class="form-control" id="userID-input" placeholder="LouYu93">
+                                    </div> 
+                                </form>    
+                            </div>
+                            <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab" aria-expanded="false">
+                                <div id="courses-box">
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="best-courses" role="tabpanel" aria-labelledby="best-tab" aria-expanded="false">
+                                <p>3rd Content Content</p>                                    
+                            </div>
+                            <div class="tab-pane fade" id="worst-courses" role="tabpanel" aria-labelledby="worst-tab" aria-expanded="false">
+                                <p>4th Content Content</p>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $.get('/data_subjects', (data)=>{
+        console.log(data);
+    }).done((data,error)=>{
+        for (let i=0; i<data.length; i++){
+            let subject= data[i].name
+        //make dropdowns
+            let $dropDown = $("<div>", {class:'dropdown'});
+            let $dropBtn = $("<button>"+subject+"</button>");
+                $dropBtn.addClass("btn btn-secondary dropdown-toggle");
+                $dropBtn.attr("type", "button");
+                $dropBtn.attr("id", subject);
+            let $dropMenu = $("<div>", {class:"dropdown-menu"});
+                $dropMenu.attr("id", "menu_"+subject);
+            $('#courses-box').append($dropDown).append($dropBtn, $dropMenu);
+            $('.dropdown-toggle').attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
+            
+            for(let c=0; c<data[i].areas.length; c++){
+                let area = data[i].areas[c].name;
+            //add checkboxes to dropdowns
+                let $dropCheck = $("<input>", {class:"dropdown-item", type:"checkbox"});
+                let $checkLabel = $("<label>"+area+"</label>", {class:"dropdown-item"});
+                    $checkLabel.attr("id", area);
+                $('#menu_science').attr('aria-labelledby', 'science').append($checkLabel);
+                // $('#checkLabel').prepend($dropCheck);
+            }
+        }
+    });
+
+    // let area = 'accounting';
+    // let subject = 'business';
+
+    // let $dropDown = $("<div>", {id: 'newdropdown1', class:'dropdown'});
+    // let $dropBtn = $("<button>", {id: 'newbutton1', class:"btn btn-secondary dropdown-toggle", type: "button"});
+    // let $dropMenu = $("<div>", {id:'dropMenu-box', class:"dropdown-menu"});
+
+    // let $dropCheck = $("<input>", {id:'newInput', class:"dropdown-item", type:"checkbox"});
+    // let $checkLabel = $("<label>", {class:"dropdown-item", id:"checkLabel"});
+
+    // $('#courses-box').append($dropDown).append($dropBtn, $dropMenu);
+    // $('#newbutton1').html(subject).attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
+
+    // $('#dropMenu-box').attr('aria-labelledby', 'newbutton1').append($checkLabel);
+    // $('#checkLabel').html(area).prepend($dropCheck);
+
+</script>
+</body>
+</html>

@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/lcanizzo/Study_Buddy/issues"
   },
-  "homepage": "https://github.com/lcanizzo/Study_Buddy#readme"
+  "homepage": "https://github.com/lcanizzo/Study_Buddy#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "nodemon": "^1.12.1",
+    "path": "^0.12.7"
+  }
 }
