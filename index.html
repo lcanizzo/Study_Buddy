@@ -97,7 +97,7 @@
                             </div>
                             <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab" aria-expanded="false">
                                 <div id="courses-box">
-                                    <div class="dropdown" id="dropdown-group"></div>
+                                    <div class="btn-group" id="dropdown-group"></div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="best-courses" role="tabpanel" aria-labelledby="best-tab" aria-expanded="false">
@@ -119,6 +119,9 @@
         for (let i=0; i<data.length; i++){
             let subject= data[i].name
         //make dropdown buttons
+            let $dropDown = $("<div>");
+                $dropDown.addClass("dropdown");
+                $dropDown.attr("id", "dropDwn_"+subject);
             let $dropBtn = $("<button>"+subject+"</button>");
                 $dropBtn.addClass("btn btn-secondary dropdown-toggle");
                 $dropBtn.attr("type", "button");
@@ -127,7 +130,8 @@
                 $dropMenu.addClass("dropdown-menu");                
                 $dropMenu.attr("id", "menu_"+subject);                
                 $dropMenu.attr("aria-labelledby", subject);
-            $('#dropdown-group').append($dropBtn, $dropMenu);
+            $('#dropdown-group').append($dropDown);
+            $('#dropDwn_'+subject).append($dropBtn, $dropMenu);
             $('.dropdown-toggle').attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
             
             for(let c=0; c<data[i].areas.length; c++){
