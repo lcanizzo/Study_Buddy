@@ -97,7 +97,10 @@
                             </div>
                             <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab" aria-expanded="false">
                                 <div id="courses-box">
-                                    <div class="btn-group" id="dropdown-group"></div>
+                                    <form action="/current_courses" method="post">
+                                        <div class="btn-group" id="dropdown-group"></div>       
+                                        <input id="course-form-submit" type="submit" value="Submit" class="btn btn-secondary">             
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="best-courses" role="tabpanel" aria-labelledby="best-tab" aria-expanded="false">
@@ -113,6 +116,13 @@
         </div>
     </div>
 <script>
+        $('#course-form-submit').on('click',()=>{
+        console.log('clicked');
+
+        // $('input[name="courseboxes"]:checked').each(()=>{
+        //     console.log(this.value);
+        // })
+    });
     $.get('/data_subjects', (data)=>{
         console.log(data);
     }).done((data,error)=>{
@@ -140,8 +150,11 @@
                 let area = areaString.replace(/\s+/g, '');
             //add checkboxes to dropdowns
                 let $dropCheck = $("<input>");
-                    $dropCheck.addClass("dropdown-item");
+                    $dropCheck.addClass("dropdown-item tick-box");
+                    $dropCheck.attr("name", "courseboxes");
                     $dropCheck.attr("type", "checkbox");
+                    $dropCheck.val(areaString);
+                    console.log('C H E C K B O X:',$dropCheck)
                 let $checkLabel = $("<label>"+areaString+"</label>");
                     $checkLabel.addClass("dropdown-item");
                     $checkLabel.attr("id", area);
@@ -151,20 +164,7 @@
         }
     });
 
-    // let area = 'accounting';
-    // let subject = 'business';
 
-    // let $dropDown = $("<div>", {id: 'newdropdown1', class:'dropdown'});
-    // let $dropBtn = $("<button>", {id: 'newbutton1', class:"btn btn-secondary dropdown-toggle", type: "button"});
-    // let $dropMenu = $("<div>", {id:'dropMenu-box', class:"dropdown-menu"});
-    // $('#courses-box').append($dropDown).append($dropBtn, $dropMenu);
-    // $('#newbutton1').html(subject).attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
-
-
-    // let $dropCheck = $("<input>", {id:'newInput', class:"dropdown-item", type:"checkbox"});
-    // let $checkLabel = $("<label>", {class:"dropdown-item", id:"checkLabel"});
-    // $('#dropMenu-box').attr('aria-labelledby', 'newbutton1').append($checkLabel);
-    // $('#checkLabel').html(area).prepend($dropCheck);
 
 </script>
 </body>

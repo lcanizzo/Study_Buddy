@@ -650,6 +650,7 @@ const subjects = [
     },
 ]
 
+let userCourses = []
 // R O U T I N G
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "index.html"));
@@ -662,6 +663,10 @@ app.get('/home', (req,res)=>{
 app.get('/data_subjects', (req,res)=>{
     res.json(subjects);
 });
+
+app.post('/current_courses', (req,res)=>{
+    console.log('P O S T   R E Q U E S T:', req.body);
+})
 
 app.listen(PORT,()=>{
     console.log('listening on:', PORT);
