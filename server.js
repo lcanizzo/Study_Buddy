@@ -659,6 +659,10 @@ app.get('/data_subjects', (req,res)=>{
     res.json(subjects);
 });
 
+app.get('/data_courses', (req,res)=>{
+    res.json(userCourses);
+});
+
 // R O U T I N G
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "index.html"));
@@ -672,6 +676,10 @@ app.get('/current_courses', (req,res)=>{
     res.sendFile(path.join(__dirname, "current_courses.html"));    
 });
 
+app.get('/top_courses', (req,res)=>{
+    res.sendFile(path.join(__dirname, "top_courses.html"));    
+});
+
 // P O S T   M E T H O D S
 app.post('/new_user_setup', (req,res)=>{
     userInfo = req.body;
@@ -680,12 +688,11 @@ app.post('/new_user_setup', (req,res)=>{
 });
 
 app.post('/current_courses', (req,res)=>{
-    console.log('Current Courses:', req);
     let currentCourses = req.body;
     userCourses.push(currentCourses);
-    res.end();
+    console.log('Current Courses:\n', userCourses);    
+    res.redirect('/top_courses');        
 });
-
 
 // L I S T E N
 app.listen(PORT,()=>{
