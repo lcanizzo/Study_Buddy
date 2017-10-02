@@ -692,14 +692,12 @@ app.get('/bottom_courses', (req,res)=>{
 // P O S T   M E T H O D S
 app.post('/new_user_setup', (req,res)=>{
     userInfo = req.body;
-    // console.log('User Info:', userInfo);
     res.redirect('/current_courses');        
 });
 
 app.post('/current_courses', (req,res)=>{
     let currentCourses = req.body;
     userCourses.push(currentCourses);
-    // console.log('Current Courses:\n', userCourses);    
     res.redirect('/top_courses');        
 });
 
@@ -709,16 +707,12 @@ app.post('/top_courses', (req,res)=>{
         if(topCourses[0].courseboxes.indexOf(userCourses[0].courseboxes[i])==-1){
             bottomCourses.push(userCourses[0].courseboxes[i]);
         }
-    }
-    console.log('Top Courses:\n', topCourses);
-    console.log('Current Courses:\n', userCourses); 
-    console.log('Bottom Courses:\n', bottomCourses);    
+    }    
     res.redirect('/bottom_courses');        
 });
 
 app.post('/bottom_courses', (req,res)=>{
     bottomCourses.push(req.body);
-    // console.log('Bottom Courses:\n', req.body);    
     res.redirect('/home');        
 });
 
