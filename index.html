@@ -55,116 +55,28 @@
 
     <!-- User Setup div -->
     <div class="container page-body setup-body">
-        <div id="results-box">
-            <div class="row">
-                <h3 id="school-name">Setup User Profile:</h3>
+        <div class="card">
+            <div class="card-header">
+                Setup User Profile:
             </div>
+            <div class="card-body">
+                <form action="/new_user_setup" method="POST" enctype="application/x-www-form-urlencoded">
+                    <label for="name-input">Name</label>
+                    <input type="text" class="form-control" id="name-input" name="name" placeholder="Luca Yu">
 
-            <div class="row results-content">
-                <div class="col content">
-                    <div id="charts">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact-info" role="tab" aria-controls="contact" aria-expanded="true"
-                                    data-ytta-id="-">Contact Info</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" data-ytta-id="-" aria-expanded="false">Current Courses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="best-tab" data-toggle="tab" href="#best-courses" role="tab" aria-controls="best" data-ytta-id="-" aria-expanded="false">Best Courses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="worst-tab" data-toggle="tab" href="#worst-courses" role="tab" aria-controls="worst" data-ytta-id="-" aria-expanded="false">Worst Courses</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="contact-info" role="tabpanel" aria-labelledby="contact-tab" aria-expanded="true">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="name-input">Name</label>
-                                        <input type="text" class="form-control" id="name-input" placeholder="Luca Yu">
-                                    </div> 
-                                    <div class="form-group">
-                                        <label for="email-input">Email address</label>
-                                        <input type="email" class="form-control" id="email-input" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="userID-input">User ID</label>
-                                        <input type="text" class="form-control" id="userID-input" placeholder="LouYu93">
-                                    </div> 
-                                </form>    
-                            </div>
-                            <div class="tab-pane fade" id="courses" role="tabpanel" aria-labelledby="courses-tab" aria-expanded="false">
-                                <div id="courses-box">
-                                    <form action="/current_courses" method="post">
-                                        <div class="btn-group" id="dropdown-group"></div>       
-                                        <input id="course-form-submit" type="submit" value="Submit" class="btn btn-secondary">             
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="best-courses" role="tabpanel" aria-labelledby="best-tab" aria-expanded="false">
-                                <p>3rd Content Content</p>                                    
-                            </div>
-                            <div class="tab-pane fade" id="worst-courses" role="tabpanel" aria-labelledby="worst-tab" aria-expanded="false">
-                                <p>4th Content Content</p>                                    
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <label for="email-input">Email address</label>
+                    <input type="email" class="form-control" id="email-input" name="email" placeholder="Enter email">
+
+                    <label for="userID-input">User ID</label>
+                    <input type="text" class="form-control" id="userID-input" name="userID" placeholder="LouYu93">
+
+                    <input id="user-form-submit" type="submit" value="Submit" class="btn btn-secondary">                                                 
+                </form>    
             </div>
         </div>
     </div>
+
 <script>
-        $('#course-form-submit').on('click',()=>{
-        console.log('clicked');
-
-        // $('input[name="courseboxes"]:checked').each(()=>{
-        //     console.log(this.value);
-        // })
-    });
-    $.get('/data_subjects', (data)=>{
-        console.log(data);
-    }).done((data,error)=>{
-        for (let i=0; i<data.length; i++){
-            let subjectString= data[i].name
-            let subject = subjectString.replace(/\s+/g, '');
-        //make dropdown buttons
-            let $dropDown = $("<div>");
-                $dropDown.addClass("dropdown");
-                $dropDown.attr("id", "dropDwn_"+subject);
-            let $dropBtn = $("<button>"+subjectString+"</button>");
-                $dropBtn.addClass("btn btn-secondary dropdown-toggle");
-                $dropBtn.attr("type", "button");
-                $dropBtn.attr("id", subject);
-            let $dropMenu = $("<div></div>");
-                $dropMenu.addClass("dropdown-menu");                
-                $dropMenu.attr("id", "menu_"+subject);                
-                $dropMenu.attr("aria-labelledby", subject);
-            $('#dropdown-group').append($dropDown);
-            $('#dropDwn_'+subject).append($dropBtn, $dropMenu);
-            $('.dropdown-toggle').attr('data-toggle', 'dropdown').attr('aria-expanded', 'false');
-            
-            for(let c=0; c<data[i].areas.length; c++){
-                let areaString = data[i].areas[c].name;
-                let area = areaString.replace(/\s+/g, '');
-            //add checkboxes to dropdowns
-                let $dropCheck = $("<input>");
-                    $dropCheck.addClass("dropdown-item tick-box");
-                    $dropCheck.attr("name", "courseboxes");
-                    $dropCheck.attr("type", "checkbox");
-                    $dropCheck.val(areaString);
-                    console.log('C H E C K B O X:',$dropCheck)
-                let $checkLabel = $("<label>"+areaString+"</label>");
-                    $checkLabel.addClass("dropdown-item");
-                    $checkLabel.attr("id", area);
-                $('#menu_'+subject).attr('aria-labelledby', subject).prepend($checkLabel);
-                $('#'+area).prepend($dropCheck);
-            }
-        }
-    });
-
-
 
 </script>
 </body>
