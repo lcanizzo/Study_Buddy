@@ -413,7 +413,7 @@ const subjects = [
                 ]             
             }, 
             {
-                name: "drama, theater, and film",
+                name: "drama theater and film",
                 classes: [
                     {
                         name: "all"
@@ -442,7 +442,7 @@ const subjects = [
                 ]             
             },    
             {
-                name: "U.S history",
+                name: "United States History",
                 classes: [
                     {
                         name: "all"
@@ -651,7 +651,8 @@ const subjects = [
 ];
 
 let userCourses = [];
-
+let topCourses = [];
+let bottomCourses = [];
 let UserInfo = {};
 
 // G E T   D A T A
@@ -662,6 +663,10 @@ app.get('/data_subjects', (req,res)=>{
 app.get('/data_courses', (req,res)=>{
     res.json(userCourses);
 });
+
+app.get('/data_bottom', (req,res)=>{
+    res.json(bottomCourses);
+})
 
 // R O U T I N G
 app.get('/', (req,res)=>{
@@ -680,18 +685,41 @@ app.get('/top_courses', (req,res)=>{
     res.sendFile(path.join(__dirname, "top_courses.html"));    
 });
 
+app.get('/bottom_courses', (req,res)=>{
+    res.sendFile(path.join(__dirname, "bottom_courses.html"));    
+});
+
 // P O S T   M E T H O D S
 app.post('/new_user_setup', (req,res)=>{
     userInfo = req.body;
-    console.log('User Info:', userInfo);
+    // console.log('User Info:', userInfo);
     res.redirect('/current_courses');        
 });
 
 app.post('/current_courses', (req,res)=>{
     let currentCourses = req.body;
     userCourses.push(currentCourses);
-    console.log('Current Courses:\n', userCourses);    
+    // console.log('Current Courses:\n', userCourses);    
     res.redirect('/top_courses');        
+});
+
+app.post('/top_courses', (req,res)=>{
+    topCourses.push(req.body);
+    for(let i=0; i<userCourses[0].courseboxes.length; i++){
+        if(topCourses[0].courseboxes.indexOf(userCourses[0].courseboxes[i])==-1){
+            bottomCourses.push(userCourses[0].courseboxes[i]);
+        }
+    }
+    console.log('Top Courses:\n', topCourses);
+    console.log('Current Courses:\n', userCourses); 
+    console.log('Bottom Courses:\n', bottomCourses);    
+    res.redirect('/bottom_courses');        
+});
+
+app.post('/bottom_courses', (req,res)=>{
+    bottomCourses.push(req.body);
+    // console.log('Bottom Courses:\n', req.body);    
+    res.redirect('/home');        
 });
 
 // L I S T E N

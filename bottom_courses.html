@@ -42,14 +42,14 @@
     <div class="container page-body setup-body">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Top Areas</div>
+                <div class="card-title">Bottom Areas</div>
                 <div class="card-userName"></div>
             </div>
             <div class="card-body">
                 <div id="courses-box">
-                    <form action="/top_courses" method="post">
+                    <form action="/bottom_courses" method="post">
                         <div id="dropdown-group"></div>       
-                        <input id="top-form-submit" type="submit" value="Submit" class="btn btn-secondary">  
+                        <input id="bottom-form-submit" type="submit" value="Submit" class="btn btn-secondary">  
                     </form>
                 </div>  
             </div>
@@ -57,12 +57,12 @@
     </div>
 </body>
 <script>
-    $.get('/data_courses', (data)=>{
+    $.get('/data_bottom', (data)=>{
         console.log('data:', data);
-    }).done((data, error)=>{
-        console.log(data[0].courseboxes);
-        for(let i=0; i<data[0].courseboxes.length; i++){
-            let courseString = data[0].courseboxes[i];
+    })
+    .done((data, error)=>{
+        for(let i=0; i<data.length; i++){
+            let courseString = data[i];
             let course = courseString.replace(/\s+/g, '');
         //add checkboxes to div
             let $courseCheck =  $("<input>");
