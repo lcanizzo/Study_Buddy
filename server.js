@@ -653,6 +653,12 @@ const subjects = [
 let userCourses = [];
 
 let UserInfo = {};
+
+// G E T   D A T A
+app.get('/data_subjects', (req,res)=>{
+    res.json(subjects);
+});
+
 // R O U T I N G
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "index.html"));
@@ -662,22 +668,15 @@ app.get('/home', (req,res)=>{
     res.sendFile(path.join(__dirname, "search.html"));
 });
 
-app.get('/new_user_setup', (req,res)=>{
-    res.sendFile(path.join(__dirname, "current_courses.html"));            
-});
-
 app.get('/current_courses', (req,res)=>{
-    res.sendFile(path.join(__dirname, "top-classes.html"));    
+    res.sendFile(path.join(__dirname, "current_courses.html"));    
 });
 
-app.get('/data_subjects', (req,res)=>{
-    res.json(subjects);
-});
-
+// P O S T   M E T H O D S
 app.post('/new_user_setup', (req,res)=>{
     userInfo = req.body;
     console.log('User Info:', userInfo);
-    res.end();        
+    res.redirect('/current_courses');        
 });
 
 app.post('/current_courses', (req,res)=>{
@@ -687,6 +686,8 @@ app.post('/current_courses', (req,res)=>{
     res.end();
 });
 
+
+// L I S T E N
 app.listen(PORT,()=>{
     console.log('listening on:', PORT);
 });
