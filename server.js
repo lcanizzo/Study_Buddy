@@ -163,6 +163,7 @@ app.post('/bottom_courses', (req,res)=>{
     user.topCourses = topCourses[0].courseboxes;
     user.bottomCourses = bottomCourses[0].courseboxes;
     user.allCourses = userCourses[0].courseboxes;    
+    user_data.push(user);
     match();
     res.redirect('/home');        
 });
