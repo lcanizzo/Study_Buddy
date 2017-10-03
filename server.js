@@ -104,6 +104,14 @@ app.get('/data_match', (req,res)=>{
 
 // R O U T I N G
 app.get('/', (req,res)=>{
+    userCourses = [];
+    topCourses = [];
+    bottomCourses = [];
+    UserInfo = {};
+    user = {};
+    goodMatchClientBottom = [];
+    goodMatchClientTop = [];
+    goodMatch = [];
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
