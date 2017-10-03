@@ -82,7 +82,11 @@ app.get('/data_courses', (req,res)=>{
 
 app.get('/data_bottom', (req,res)=>{
     res.json(bottomCourses);
-})
+});
+
+app.get('/data_match', (req,res)=>{
+    res.json(goodMatch);
+});
 
 // R O U T I N G
 app.get('/', (req,res)=>{

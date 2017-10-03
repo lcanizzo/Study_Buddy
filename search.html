@@ -52,7 +52,43 @@
         </div>
     </div>
 </body>
+
 <script>
-     
+    $.get('/data_match', (data)=>{
+        console.log('data:', data);
+    })
+    .done((data,error)=>{
+        //for each matched user
+        for(let i=0;i<data.length;i++){
+            let $cardDiv = $("<div>");
+                $cardDiv.addClass("card");
+                $cardDiv.attr("id","match-box"+data[i].userID);
+            //appendDiv to html div
+            $("#courses-box").append($cardDiv);
+            let $titleDiv = $("<div>");
+                $titleDiv.addClass("card-body");
+                $titleDiv.attr("id", "title-box"+data[i].userID);
+            $("#match-box"+data[i].userID).append($titleDiv);
+            let $cardTitle = $("<h4>"+data[i].userID+"</h4>");
+                $cardTitle.addClass("card-title");
+            $("#title-box"+data[i].userID).append($cardTitle);
+            let $matchesList = $("<ul>");
+                $matchesList.addClass("list-group list-group-flush");
+                $matchesList.attr("id", "match-list"+data[i].userID);
+            $("#match-box"+data[i].userID).append($matchesList);
+            let $linksDiv = $("<div>");
+                $linksDiv.addClass("card-body");
+                $linksDiv.attr("id", "links-div"+data[i].userID);
+            $("#match-box"+data[i].userID).append($linksDiv);
+            let $saveUser = $("<a>Save User</a>");
+                $saveUser.addClass("card-link");
+                $saveUser.attr("href","#");
+            $("#links-div"+data[i].userID).append($saveUser);
+            let $messageUser = $("<a>Message User</a>");
+                $messageUser.addClass("card-link");
+                $messageUser.attr("href","#");
+            $("#links-div"+data[i].userID).append($messageUser);
+        }
+    })
 </script>
 </html>
