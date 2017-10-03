@@ -66,6 +66,23 @@ const match = ()=>{
             goodMatch.push(goodMatchClientBottom[i]);
         }
     }
+    for (let i=0; i<goodMatch.length; i++){
+        //for each match
+        //if there is a class they tutor the current student needs
+        for(let t=0; t<goodMatch[i].topCourses.length; t++){
+            if(user.bottomCourses.indexOf(goodMatch[i].topCourses[t]) !==-1){
+                goodMatch[i].tutoring =[]
+                goodMatch[i].tutoring.push(goodMatch[i].topCourses[t]);
+            }
+        }
+        //if there is a class they need the current student tutors
+        for(let t=0; t<goodMatch[i].bottomCourses.length; t++){
+            if(user.topCourses.indexOf(goodMatch[i].bottomCourses[t]) !==-1){
+                goodMatch[i].needs =[]
+                goodMatch[i].needs.push(goodMatch[i].bottomCourses[t]);
+            }
+        }
+    }
     // console.log("Client Tutor:\n", goodMatchClientTop);
     // console.log("Client be Tutored:\n", goodMatchClientBottom);    
     console.log("Client Match:\n", goodMatch);
