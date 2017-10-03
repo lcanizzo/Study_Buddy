@@ -7,7 +7,7 @@ const user_data = require('./data/user_data.js');
 
 // E X P R E S S  A P P
 const app = express();
-const PORT = 8888;
+const PORT = process.env.PORT || 8888;
 
 // D A T A  P A R S I N G
 app.use(bodyParser.urlencoded({
