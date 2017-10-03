@@ -75,6 +75,12 @@
                 $matchesList.addClass("list-group list-group-flush");
                 $matchesList.attr("id", "match-list"+data[i].userID);
             $("#match-box"+data[i].userID).append($matchesList);
+            let $tutoring = $("<li>Tutoring: "+data[i].tutoring+"</li>");
+                $tutoring.addClass("list-group-item");
+            let $needs = $("<li>Needs: "+data[i].needs+"</li>");
+                $needs.addClass("list-group-item");   
+            $("#match-list"+data[i].userID).append($tutoring);
+            $("#match-list"+data[i].userID).append($needs);
             let $linksDiv = $("<div>");
                 $linksDiv.addClass("card-body");
                 $linksDiv.attr("id", "links-div"+data[i].userID);

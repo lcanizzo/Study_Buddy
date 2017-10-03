@@ -61,7 +61,7 @@ const match = ()=>{
     }
     for (let i=0; i<goodMatchClientBottom.length;i++){
         //for each good match for client tutor
-        if (goodMatchClientTop.indexOf(goodMatchClientBottom[i])!==-1){
+        if (goodMatchClientTop.indexOf(goodMatchClientBottom[i])!==-1 && goodMatch.indexOf(goodMatchClientBottom[i])==-1){
             //if there is a match with client to be tutored
             goodMatch.push(goodMatchClientBottom[i]);
         }
@@ -83,9 +83,6 @@ const match = ()=>{
             }
         }
     }
-    // console.log("Client Tutor:\n", goodMatchClientTop);
-    // console.log("Client be Tutored:\n", goodMatchClientBottom);    
-    console.log("Client Match:\n", goodMatch);
 };
 
 // G E T   D A T A
@@ -159,7 +156,6 @@ app.post('/bottom_courses', (req,res)=>{
     user.bottomCourses = bottomCourses[0].courseboxes;
     user.allCourses = userCourses[0].courseboxes;    
     match();
-    console.log('user:\n', user);
     res.redirect('/home');        
 });
 
