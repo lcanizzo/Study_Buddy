@@ -27,6 +27,50 @@ let UserInfo = {};
 
 let user = {};
 
+
+// F U N C T I O N S 
+let goodMatchClientBottom = [];
+let goodMatchClientTop = [];
+let goodMatch = [];
+const match = ()=>{
+    for(let i=0; i<users.length; i++){
+        //for each stored user
+        for(let a=0; a<users[i].topCourses.length;a++){
+            //for each of a user's top classes
+            for(let c=0; c<user.bottomCourses.length;c++){
+                //for each of the current user's bottom courses
+                if(users[i].topCourses[a].indexOf(user.bottomCourses[c])!==-1){
+                    //if there is a match
+                    goodMatchClientBottom.push(users[i]);
+                }
+            }
+        }
+    };
+    for(let i=0; i<users.length; i++){
+        //for each stored user
+        for(let a=0; a<users[i].bottomCourses.length;a++){
+            //for each of a user's bottom classes
+            for(let c=0; c<user.topCourses.length;c++){
+                //for each of the current user's top courses
+                if(users[i].bottomCourses[a].indexOf(user.topCourses[c])!==-1){
+                    //if there is a match
+                    goodMatchClientTop.push(users[i]);
+                }
+            }
+        }
+    }
+    for (let i=0; i<goodMatchClientBottom.length;i++){
+        //for each good match for client tutor
+        if (goodMatchClientTop.indexOf(goodMatchClientBottom[i])!==-1){
+            //if there is a match with client to be tutored
+            goodMatch.push(goodMatchClientBottom[i]);
+        }
+    }
+    // console.log("Client Tutor:\n", goodMatchClientTop);
+    // console.log("Client be Tutored:\n", goodMatchClientBottom);    
+    console.log("Client Match:\n", goodMatch);
+};
+
 // G E T   D A T A
 app.get('/data_subjects', (req,res)=>{
     res.json(subjects);
@@ -93,7 +137,7 @@ app.post('/bottom_courses', (req,res)=>{
     user.topCourses = topCourses[0].courseboxes;
     user.bottomCourses = bottomCourses[0].courseboxes;
     user.allCourses = userCourses[0].courseboxes;    
-
+    match();
     console.log('user:\n', user);
     res.redirect('/home');        
 });
