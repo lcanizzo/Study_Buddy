@@ -712,6 +712,7 @@ app.post('/top_courses', (req,res)=>{
 });
 
 app.post('/bottom_courses', (req,res)=>{
+    bottomCourses = [];
     bottomCourses.push(req.body);
     res.redirect('/home');        
 });
