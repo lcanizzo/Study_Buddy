@@ -132,6 +132,10 @@ app.get('/bottom_courses', (req,res)=>{
 });
 
 // P O S T   M E T H O D S
+
+//every time you are taking a user info and you dont want to redirect without information being updated and posted
+    // you need a promise function to handle the instances and only let the redirect happen if the data is added successfully
+        // see promise (resolve, reject)
 app.post('/new_user_setup', (req,res)=>{
     userInfo = req.body;
     res.redirect('/current_courses');        
